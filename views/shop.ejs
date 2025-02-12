@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Shop</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+    <script src="javascripts/script.js"></script>
+  </head>
+  <body class="font-sans">
+    <!-- Navbar -->
+    <nav class="w-full bg-white shadow-md">
+      <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+        <!-- Brand Section -->
+        <h3 class="text-2xl font-bold" style="color: #aa8f6c;">
+          Sketch <span style="color: #806441;">Shop</span>
+        </h3>
+    
+        <!-- Navigation Links -->
+        <div class="hidden md:flex space-x-6 items-center">
+          <a href="/shop" style="color: #806441;" class="hover:text-[#aa8f6c] font-medium">Shop</a>
+          <a href="/cart" style="color: #806441;" class="hover:text-[#aa8f6c] font-medium">Cart</a>
+          <a href="/account" style="color: #806441;" class="hover:text-[#aa8f6c] font-medium">My Account</a>
+          <a href="/users/logout" style="color: #806441;" class="hover:text-[#aa8f6c] font-medium">Logout</a>
+        </div>
+    
+        <!-- User Welcome Section -->
+        <div class="hidden md:flex items-center">
+          <p class="text-sm" style="color: #806441;">
+            Welcome, <span class="font-bold" style="color: #806441;"> <%= user.fullname %> </span>!
+          </p>
+        </div>
+    
+        <!-- Mobile Menu Toggle -->
+        <button class="md:hidden" style="color: #806441;" id="menu-toggle">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-6 h-6">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+          </svg>
+        </button>
+      </div>
+    
+      <!-- Mobile Menu -->
+      <div class="md:hidden" id="mobile-menu" style="display: none;">
+        <div class="px-6 py-4 space-y-4">
+          <a href="/shop" style="color: #806441;" class="block hover:text-[#aa8f6c] font-medium">Shop</a>
+          <a href="/cart" style="color: #806441;" class="block hover:text-[#aa8f6c] font-medium">Cart</a>
+          <a href="/account" style="color: #806441;" class="block hover:text-[#aa8f6c] font-medium">My Account</a>
+          <a href="/users/logout" style="color: #806441;" class="block hover:text-[#aa8f6c] font-medium">Logout</a>
+        </div>
+      </div>
+    </nav>
+    
+    <% if (success && success.length > 0) { %>
+      <div
+        class="flash-message fixed top-5 left-1/2 transform -translate-x-1/2 bg-green-500 text-white px-4 py-2 rounded shadow-md"
+      >
+        <%= success[0] %>
+      </div>
+      <% } %>
+
+    <!-- Main Content -->
+    <div
+      class="max-w-7xl mx-auto px-4 py-10 flex flex-wrap lg:flex-nowrap gap-8"
+    >
+      <!-- Sidebar -->
+      <aside class="w-full lg:w-1/4 flex flex-col gap-8">
+        <!-- Sorting -->
+        <div>
+          <h3 class="text-lg font-medium mb-2" style="color: #806441;">Sort by</h3>
+          <form action="users/login/shop">
+            <select
+              class="w-full border rounded-lg px-4 py-2 outline-none"
+              style="color: #806441;"
+              name="sortby"
+              id=""
+            >
+              <option value="popular">Popular</option>
+              <option value="newest">Newest</option>
+            </select>
+          </form>
+        </div>
+
+        <!-- Categories -->
+        <div>
+          <h3 class="text-lg font-medium mb-2" style="color: #806441;">Categories</h3>
+          <ul class="space-y-2">
+            <li>
+              <a class="text-blue-600 hover:underline" href="#"
+              style="color: #aa8f6c;">New Collection</a
+              >
+            </li>
+            <li>
+              <a class="text-blue-600 hover:underline" style="color: #aa8f6c;"href="#">All Products</a>
+            </li>
+            <li>
+              <a class="text-blue-600 hover:underline" style="color: #aa8f6c;" href="#"
+                >Discounted Products</a
+              >
+            </li>
+          </ul>
+        </div>
+
+        <!-- Filters -->
+        <div>
+          <h3 class="text-lg font-medium mb-2" style="color: #806441;">Filter by</h3>
+          <ul class="space-y-2">
+            <li>
+              <a class="text-blue-600 hover:underline" style="color: #aa8f6c;" href="#">Availability</a>
+            </li>
+            <li>
+              <a class="text-blue-600 hover:underline" style="color: #aa8f6c;" href="#">Discount</a>
+            </li>
+          </ul>
+        </div>
+      </aside>
+
+      <!-- Products Section -->
+      <section
+        class="w-full lg:w-3/4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6"
+      >
+        <% if (products.length > 0) { %> <% products.reverse().forEach(function
+        (product) { %>
+        <div
+          class=" rounded-lg  overflow-hidden"
+          style="
+            background-color: <%= product.bgcolor %>;
+            color: <%= product.textcolor %>;
+          "
+        >
+          <div
+            class=" h-52 rounded flex items-center justify-center"
+          >
+            <img
+              class="max-h-full max-w-full object-contain rounded"
+              src="data:image/jpeg;base64,<%= product.image.toString('base64') %>"
+              alt="Product Image"
+            />
+          </div>
+          <div
+            class="p-4"
+            style="
+              background-color: <%= product.panelcolor %>;
+            "
+          >
+            <h3 class="text-lg font-medium"><%= product.name %></h3>
+            <div class="flex items-center gap-2">
+              <del class="text-gray-500">₹ <%= product.price %></del>
+              <span class="font-bold text-red-600">₹ <%= product.discount %></span>
+            </div>
+            <div class="mt-4 flex justify-end">
+              <a
+                class="flex items-center justify-center w-10 h-10 rounded-full"
+                href="/addtocart/<%= product._id%>"
+              >
+                <i class="ri-add-line" ></i>
+              </a>
+            </div>
+          </div>
+        </div>
+        <% }); %> <% } else { %>
+        <h3 class="text-zinc-500 text-center mt-4">No Products Yet.</h3>
+        <% } %>
+      </section>
+    </div>
+  </body>
+</html>

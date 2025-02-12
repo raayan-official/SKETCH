@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+    <script src="javascripts/script.js"></script>
+</head>
+<body class="bg-gray-100">
+        <!-- Navbar -->
+        <nav class="w-full bg-white shadow-md sticky top-0 z-50">
+            <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+              <!-- Brand Section -->
+              <h3 class="text-2xl font-bold" style="color: #aa8f6c;">
+                Sketch <span style="color: #806441;">Cart</span>
+              </h3>
+          
+              <!-- Navigation Links -->
+              <div class="hidden md:flex space-x-6 items-center">
+                <a href="/shop" style="color: #806441;" class="hover:text-[#aa8f6c] font-medium">Shop</a>
+                <a href="/cart" style="color: #806441;" class="hover:text-[#aa8f6c] font-medium">Cart</a>
+                <a href="/account" style="color: #806441;" class="hover:text-[#aa8f6c] font-medium">My Account</a>
+                <a href="/users/logout" style="color: #806441;" class="hover:text-[#aa8f6c] font-medium">Logout</a>
+              </div>
+          
+              <!-- User Welcome Section -->
+              <div class="hidden md:flex items-center">
+                <p class="text-sm" style="color: #806441;">
+                  Welcome, <span class="font-bold" style="color: #806441;"> </span>!
+                </p>
+              </div>
+          
+              <!-- Mobile Menu Toggle -->
+              <button class="md:hidden" style="color: #806441;" id="menu-toggle">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-6 h-6">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+                </svg>
+              </button>
+            </div>
+          
+            <!-- Mobile Menu -->
+            <div class="md:hidden" id="mobile-menu" style="display: none;">
+              <div class="px-6 py-4 space-y-4">
+                <a href="/shop" style="color: #806441;" class="block hover:text-[#aa8f6c] font-medium">Shop</a>
+                <a href="/cart" style="color: #806441;" class="block hover:text-[#aa8f6c] font-medium">Cart</a>
+                <a href="/account" style="color: #806441;" class="block hover:text-[#aa8f6c] font-medium">My Account</a>
+                <a href="/users/logout" style="color: #806441;" class="block hover:text-[#aa8f6c] font-medium">Logout</a>
+              </div>
+            </div>
+          </nav>
+
+    <!-- Main Content -->
+    <div class="max-w-7xl mx-auto px-6 py-10 grid grid-cols-1 md:grid-cols-3 gap-10">
+        <!-- Product Details -->
+        <div class="col-span-1 rounded-md overflow-hidden bg-white shadow-lg">
+            <div class="w-full h-80 bg-yellow-500"></div>
+            <div class="w-full flex justify-between px-5 py-4">
+                <h3 class="text-2xl font-semibold" style="color: #806441;"><%= user %></h3>
+                <div class="flex items-center gap-2">
+                    <button class="w-7 h-7 bg-gray-200 flex rounded-full items-center justify-center hover:bg-gray-300">
+                        <i class="ri-add-line"></i>
+                    </button>
+                    <div class="px-4 py-1 rounded-md bg-gray-100 text-black">01</div>
+                    <button class="w-7 h-7 bg-gray-200 flex rounded-full items-center justify-center hover:bg-gray-300">
+                        <i class="ri-subtract-line"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="flex items-center justify-between px-5 py-3">
+                <h4 class="text-lg font-medium" style="color: #806441;">Net Total</h4>
+                <h2 class="text-lg font-semibold" style="color: #aa8f6c;">₹ 1200</h2>
+            </div>
+        </div>
+
+        <!-- Price Breakdown -->
+        <div class="col-span-2 bg-white shadow-lg rounded-md p-6">
+            <h3 class="text-xl font-bold mb-5" style="color: #806441;">Price Breakdown</h3>
+            <div class="space-y-4">
+                <div class="flex justify-between">
+                    <h4 class="font-medium" style="color: #806441;">Total MRP</h4>
+                    <h4 class="font-medium">₹ 1920</h4>
+                </div>
+                <div class="flex justify-between">
+                    <h4 class="font-medium" style="color: #806441;">Discount on MRP</h4>
+                    <h4 class="font-medium">₹ 0</h4>
+                </div>
+                <div class="flex justify-between">
+                    <h4 class="font-medium" style="color: #806441;">Platform Fee</h4>
+                    <h4 class="font-medium">₹ 20</h4>
+                </div>
+                <div class="flex justify-between">
+                    <h4 class="font-medium" style="color: #806441;">Shipping Fee</h4>
+                    <h4 class="font-medium">FREE</h4>
+                </div>
+            </div>
+            <div class="w-full h-[1px] bg-gray-200 my-6"></div>
+            <div class="flex justify-between">
+                <h3 class="text-xl font-bold" style="color: #806441;">Total Amount</h3>
+                <h3 class="font-bold text-xl text-green-600">₹ 1940</h3>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
